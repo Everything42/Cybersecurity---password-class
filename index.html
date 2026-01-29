@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-User Login</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; background: #f4f4f9; }
+        .login-card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #message { text-align: center; font-weight: bold; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkLogin()">Login</button>
+    <p id="message"></p>
+</div>
+
+<script>
+    // This is your "Guest List"
+    const users = [
+    // BATCH A: The "Super Lazy" (Password is just '123456')
+    { user: "m.scott@dunder.com", pass: "123456" },
+    { user: "echen98@outlook.com", pass: "123456" },
+    { user: "jlee_88@work.com", pass: "123456" },
+    { user: "sjenks85@gmail.com", pass: "123456" },
+    { user: "dmiller@yahoo.com", pass: "123456" },
+
+    // BATCH B: The "Predictable" (Password is just 'password')
+    { user: "rob.t@company.com", pass: "password" },
+    { user: "jwhite92@me.com", pass: "password" },
+    { user: "k.malone@chili.net", pass: "password" },
+    { user: "agarcia@school.edu", pass: "password" },
+    { user: "mbrown@spooky.com", pass: "password" },
+
+    // BATCH C: Full Birthday (Pattern: DDMMYYYY)
+    { user: "cevans@shield.org", pass: "13061981" },
+    { user: "adavis93@lifestyle.com", pass: "18041993" },
+    { user: "bwilson@music.com", pass: "20121966" },
+    { user: "l.martinez@web.com", pass: "05081999" },
+    { user: "neo@matrix.com", pass: "13091971" },
+
+    // BATCH D: Last Name + Birth Year (Pattern: LastNameYYYY)
+    { user: "p.beesly@dunder.com", pass: "Beesly1979" },
+    { user: "j.halpert@dunder.com", pass: "Halpert1978" },
+    { user: "d.schrute@dunder.com", pass: "Schrute1970" },
+    { user: "a.martin@dunder.com", pass: "Martin1971" },
+    { user: "s.hudson@dunder.com", pass: "Hudson1958" },
+
+    // BATCH E: Domain Name + 123 (Pattern: Domain123)
+    { user: "spidey@nyc.com", pass: "nyc123" },
+    { user: "batman@gotham.com", pass: "gotham123" },
+    { user: "superman@metropolis.com", pass: "metropolis123" },
+    { user: "wonder@themyscira.com", pass: "themyscira123" },
+    { user: "ironman@stark.com", pass: "stark123" },
+
+    // BATCH F: First Name reversed (Pattern: emanteS)
+    { user: "frodo@shire.com", pass: "odorf" },
+    { user: "sam@shire.com", pass: "mas" },
+    { user: "wizard@middleearth.com", pass: "fladnag" },
+    { user: "elf@mirkwood.com", pass: "salogel" },
+    { user: "dwarf@mountain.com", pass: "ilmig" }
+];
+
+    function checkLogin() {
+        const userInput = document.getElementById('email').value;
+        const passInput = document.getElementById('password').value;
+        const message = document.getElementById('message');
+
+        // This line searches the array for a match
+        const foundUser = users.find(u => u.user === userInput && u.pass === passInput);
+
+        if (foundUser) {
+            window.location.href = "success.html";
+        } else {
+            message.style.color = "red";
+            message.innerHTML = "Invalid username or password.";
+        }
+    }
+</script>
+
+</body>
+</html>
